@@ -5,12 +5,13 @@ import game.bodies.Bird;
 import game.levels.GameLevel;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.io.IOException;
 import javax.swing.ImageIcon;
 
 public class MyView extends UserView {
 
     private static final Image heart = new ImageIcon("data/heart.png").getImage();
-    private static final Image heartBlue = new ImageIcon("data/heart2.png").getImage(); 
+    private static final Image heartBlue = new ImageIcon("data/heart2.png").getImage();
     private static final Image background1 = new ImageIcon("data/background1.jpg").getImage();
     private static final Image background2 = new ImageIcon("data/background2.jpg").getImage();
     private static final Image background3 = new ImageIcon("data/background3.jpg").getImage();
@@ -22,7 +23,7 @@ public class MyView extends UserView {
 
     public MyView(GameLevel world, int width, int height) {
         super(world, width, height);
-        this.world = world;    
+        this.world = world;
     }
 
     @Override
@@ -34,6 +35,12 @@ public class MyView extends UserView {
 
         if (lives == 0) {
             g.drawString("Game over!", 220, 200);
+            try {
+                world.getGame().gameOver();
+            } catch(IOException e){
+                e.printStackTrace();
+            }
+
             world.stop();
         }
 

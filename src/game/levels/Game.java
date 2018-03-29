@@ -6,9 +6,12 @@ import game.bodies.BirdClicker;
 import game.bodies.Player;
 import game.Controller;
 import game.GiveFocus;
+import game.HighScoreReader;
+import game.HighScoreWriter;
 import game.MouseMoved;
 import game.MyView;
 import java.awt.BorderLayout;
+import java.io.IOException;
 import javax.swing.JFrame;
 
 public class Game {
@@ -31,7 +34,6 @@ public class Game {
 
         // uncomment this to draw a 1-metre grid over the view      
         // view.setGridResolution(1);
-        
         final JFrame frame = new JFrame("Event handling");
 
         buttons = new ControlPanel(world);
@@ -53,15 +55,22 @@ public class Game {
 
         // uncomment to make the view track the player
         // world.addStepListener(new Tracker(view, world.getPlayer()));
-        
         // uncomment this to make a debugging view
         //JFrame debugView = new DebugViewer(world, 500, 500);
-        
         view.addMouseListener(new BirdClicker(this.view, world.getBirds(),
                 world.getPlayer(), world.getGround()));
 
         // start!
         world.start();
+    }
+
+    public void gameOver() throws IOException {
+        HighScoreWriter writer = new HighScoreWriter("data/scores.txt");
+//        writer.clear();
+        writer.writeHighScore("player1", this.getPlayer().getScore());
+
+        HighScoreReader reader = new HighScoreReader("data/scores.txt");
+        reader.readScores();
     }
 
     public Player getPlayer() {
@@ -108,14 +117,14 @@ public class Game {
                 level++;
                 world = new Level3();
                 buttons.setLevel(world);
-                
+
                 world.populate(this);
 
                 controller.setBody(world.getPlayer());
 
                 updatePlayer(oldPlayer);
                 updateView();
-                
+
                 world.start();
                 break;
             case 3:

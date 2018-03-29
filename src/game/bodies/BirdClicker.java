@@ -36,10 +36,6 @@ public class BirdClicker extends MouseAdapter {
             if (bird.contains(view.viewToWorld(e.getPoint()))) {
 
                 bird.birdClicked(player, ground);
-
-                if (!bird.getClass().toString().equals("class game.bodies.BossBird")) {
-                    birds.remove(bird);
-                }
                 
                 if(bird.lives == 0){
                     birds.remove(bird);

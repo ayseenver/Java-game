@@ -12,7 +12,6 @@ import city.cs.engine.Shape;
 import city.cs.engine.SolidFixture;
 import city.cs.engine.World;
 import game.Feather;
-import java.awt.Color;
 
 /**
  *

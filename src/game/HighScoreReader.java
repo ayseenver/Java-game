@@ -48,6 +48,7 @@ public class HighScoreReader {
                 int score = Integer.parseInt(tokens[1]);
                 scores.add(score);
 
+                //print every score in the file
                 System.out.println("Name: " + name + ", Score: " + score);
                 line = reader.readLine();
             }

@@ -82,6 +82,7 @@ public class Game {
     }
 
     public void goNextLevel() {
+        world.getGameMusic().stop();
         oldPlayer = world.getPlayer();
         world.stop();
         switch (level) {

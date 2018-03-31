@@ -16,6 +16,7 @@ public abstract class GameLevel extends World {
     private Player player;
     private Body ground;
     private Game game;
+    private SoundClip gameMusic;
 
     public Player getPlayer() {
         return player;
@@ -65,4 +66,8 @@ public abstract class GameLevel extends World {
     public void setGame(Game game) {
         this.game = game;
     }
+
+    public abstract void playSound();
+
+    public abstract SoundClip getGameMusic();
 }

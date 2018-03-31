@@ -67,7 +67,7 @@ public class Game {
     public void gameOver() throws IOException {
         HighScoreWriter writer = new HighScoreWriter("data/scores.txt");
 //        writer.clear();
-        writer.writeHighScore("player1", this.getPlayer().getScore());
+        writer.writeHighScore("player1", getPlayer().getScore());
 
         HighScoreReader reader = new HighScoreReader("data/scores.txt");
         reader.readScores();

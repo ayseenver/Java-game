@@ -6,7 +6,6 @@
 package game.bodies;
 
 import city.cs.engine.Body;
-import city.cs.engine.BodyImage;
 import city.cs.engine.Walker;
 import city.cs.engine.World;
 import java.util.Timer;

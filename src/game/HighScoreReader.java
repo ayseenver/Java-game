@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Demonstrates how high-score data can be read from a text file and printed to
@@ -53,9 +54,16 @@ public class HighScoreReader {
 
             pos = biggestPosition();
 
+            //print the highscore
             System.out.println();
             System.out.println("Highscore");
             System.out.println("Name: " + names.get(pos) + ", Score: " + scores.get(pos));
+
+            //print the top 5 scores
+            System.out.println();
+            System.out.println("Top 5");
+            topFive();
+
             System.out.println("...done.");
         } finally {
             if (reader != null) {
@@ -81,6 +89,14 @@ public class HighScoreReader {
             }
         }
         return pos;
+    }
+
+    public void topFive() {
+        Collections.sort(scores);
+        Collections.reverse(scores);
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Name: " + names.get(i) + ", Score: " + scores.get(i));
+        }
     }
 
     public static void main(String[] args) throws IOException {

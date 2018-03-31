@@ -122,12 +122,14 @@ public class ControlPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (level.isRunning()) {
+            level.getGameMusic().pause();
             level.stop();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (!level.isRunning()) {
+            level.getGameMusic().resume();
             level.start();
         }
     }//GEN-LAST:event_jButton2ActionPerformed

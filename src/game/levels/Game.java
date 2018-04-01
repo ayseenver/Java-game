@@ -5,6 +5,7 @@ import game.ControlPanel;
 import game.bodies.BirdClicker;
 import game.bodies.Player;
 import game.Controller;
+import game.GameOver;
 import game.GiveFocus;
 import game.HighScoreReader;
 import game.HighScoreWriter;
@@ -23,6 +24,8 @@ public class Game {
     private Player player;
     private Player oldPlayer;
     private final ControlPanel buttons;
+    private final GameOver gameOver;
+    private final JFrame frame;
 
     public Game() {
 
@@ -34,10 +37,12 @@ public class Game {
 
         // uncomment this to draw a 1-metre grid over the view      
         // view.setGridResolution(1);
-        final JFrame frame = new JFrame("Event handling");
+        frame = new JFrame("acwg276Game - ms3");
 
         buttons = new ControlPanel(world);
+        gameOver = new GameOver(world);
         frame.add(buttons, BorderLayout.WEST);
+        frame.add(gameOver, BorderLayout.EAST);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationByPlatform(true);
@@ -70,6 +75,7 @@ public class Game {
         writer.writeHighScore("player1", getPlayer().getScore());
 
         HighScoreReader reader = new HighScoreReader("data/scores.txt");
+        reader.setGameOver(gameOver);
         reader.readScores();
     }
 
@@ -143,7 +149,11 @@ public class Game {
                 world.start();
                 break;
             default:
-                System.exit(0);
+                try {
+                    gameOver();
+                } catch (IOException e) {
+                    System.exit(0);
+                }
         }
     }
 

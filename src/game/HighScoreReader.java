@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import javax.swing.JPanel;
 
 /**
  * Demonstrates how high-score data can be read from a text file and printed to
@@ -14,6 +15,7 @@ public class HighScoreReader {
 
     private int pos;
     private String fileName;
+    private GameOver gameOver;
     ArrayList<Integer> scores = new ArrayList<Integer>();
     ArrayList<String> names = new ArrayList<String>();
 
@@ -24,7 +26,10 @@ public class HighScoreReader {
      */
     public HighScoreReader(String fileName) {
         this.fileName = fileName;
+    }
 
+    public void setGameOver(GameOver gameOver) {
+        this.gameOver = gameOver;
     }
 
     /**
@@ -48,22 +53,20 @@ public class HighScoreReader {
                 int score = Integer.parseInt(tokens[1]);
                 scores.add(score);
 
-                //print every score in the file
-                System.out.println("Name: " + name + ", Score: " + score);
                 line = reader.readLine();
             }
 
             pos = biggestPosition();
 
             //print the highscore
-            System.out.println();
-            System.out.println("Highscore");
-            System.out.println("Name: " + names.get(pos) + ", Score: " + scores.get(pos));
+            gameOver.getTextArea().append("High score" + "\n");
+            gameOver.getTextArea().append("Name: " + names.get(pos)
+                    + ", Score: " + scores.get(pos) + "\n");
 
-            //print the top 5 scores
-            System.out.println();
-            System.out.println("Top 5");
-            topFive();
+            //print the top 10 scores
+            gameOver.getTextArea().append("\n");
+            gameOver.getTextArea().append("Top 10" + "\n");
+            topTen();
 
             System.out.println("...done.");
         } finally {
@@ -92,11 +95,12 @@ public class HighScoreReader {
         return pos;
     }
 
-    public void topFive() {
+    public void topTen() {
         Collections.sort(scores);
         Collections.reverse(scores);
-        for (int i = 0; i < 5; i++) {
-            System.out.println("Name: " + names.get(i) + ", Score: " + scores.get(i));
+        for (int i = 0; i < 10; i++) {
+            gameOver.getTextArea().append(i+1 + ") Name: " + names.get(i) + 
+                    ", Score: " + scores.get(i) + "\n");
         }
     }
 

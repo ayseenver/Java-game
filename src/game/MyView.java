@@ -40,7 +40,6 @@ public class MyView extends UserView {
             } catch(IOException e){
                 e.printStackTrace();
             }
-
             world.stop();
         }
 

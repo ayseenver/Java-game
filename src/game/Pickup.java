@@ -20,9 +20,12 @@ public class Pickup implements CollisionListener {
     public void collide(CollisionEvent e) {
         if (e.getReportingBody() instanceof Feather && e.getOtherBody() == player) {
 
+            Feather feather = (Feather) e.getReportingBody();
+            
             player.incrementFeatherCount();
             player.incrementScore(score);
-            e.getReportingBody().destroy();
+            feather.playSound();
+            feather.destroy();
         }
     }
 }

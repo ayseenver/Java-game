@@ -60,24 +60,6 @@ public class HighScoreReader {
                 line = reader.readLine();
             }
 
-            pos = biggestPosition();
-
-            //print the most recent score
-            gameOver.getTextArea().append("Your score" + "\n");
-            gameOver.getTextArea().append("Name: " + names.get(names.size() - 1)
-                    + ", Score: " + scores.get(scores.size() - 1) + "\n");
-            gameOver.getTextArea().append("\n");
-
-            //print the highscore
-            gameOver.getTextArea().append("High score" + "\n");
-            gameOver.getTextArea().append("Name: " + names.get(pos)
-                    + ", Score: " + scores.get(pos) + "\n");
-            gameOver.getTextArea().append("\n");
-
-            //print the top 10 scores
-            gameOver.getTextArea().append("Top 10" + "\n");
-            topTen();
-
             System.out.println("...done.");
         } finally {
             if (reader != null) {
@@ -86,6 +68,7 @@ public class HighScoreReader {
             if (fr != null) {
                 fr.close();
             }
+            addScoresToFile();
         }
     }
 
@@ -123,6 +106,26 @@ public class HighScoreReader {
             gameOver.getTextArea().append(i + 1 + ") Name: " + names.get(i)
                     + ", Score: " + scores.get(i) + "\n");
         }
+    }
+
+    public void addScoresToFile() {
+        pos = biggestPosition();
+        
+        //print the most recent score
+        gameOver.getTextArea().append("Your score" + "\n");
+        gameOver.getTextArea().append("Name: " + names.get(names.size() - 1)
+                + ", Score: " + scores.get(scores.size() - 1) + "\n");
+        gameOver.getTextArea().append("\n");
+
+        //print the highscore
+        gameOver.getTextArea().append("High score" + "\n");
+        gameOver.getTextArea().append("Name: " + names.get(pos)
+                + ", Score: " + scores.get(pos) + "\n");
+        gameOver.getTextArea().append("\n");
+
+        //print the top 10 scores
+//        gameOver.getTextArea().append("Top 10" + "\n");
+//        topTen();
     }
 
     public static void main(String[] args) throws IOException {

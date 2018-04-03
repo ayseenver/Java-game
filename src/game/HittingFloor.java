@@ -5,7 +5,7 @@ import city.cs.engine.*;
 import game.bodies.Player;
 
 /**
- * Collision listener that allows the bird to collect things.
+ * Collision listener that handles collisions between the feathers and the floor.
  */
 public class HittingFloor implements CollisionListener {
 

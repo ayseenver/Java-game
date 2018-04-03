@@ -5,6 +5,7 @@ import game.ControlPanel;
 import game.bodies.BirdClicker;
 import game.bodies.Player;
 import game.Controller;
+import game.EnterName;
 import game.GameOver;
 import game.GiveFocus;
 import game.HighScoreReader;
@@ -24,11 +25,13 @@ public class Game {
     private final UserView view;
     private int level;
     private final Controller controller;
-    private Player player;
     private Player oldPlayer;
     private final ControlPanel buttons;
     private final GameOver gameOver;
-    private JFrame frame;
+    private final EnterName enterName;
+    private JFrame mainFrame;
+    private JFrame nameFrame;
+    private JFrame gameOverFrame;
 
     public Game() {
 
@@ -40,23 +43,16 @@ public class Game {
 
         // uncomment this to draw a 1-metre grid over the view      
         // view.setGridResolution(1);
-        frame = new JFrame("acwg276Game - ms3");
-
         buttons = new ControlPanel(world);
         gameOver = new GameOver(world);
-        frame.add(buttons, BorderLayout.WEST);
+        enterName = new EnterName(this);
 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocationByPlatform(true);
-        frame.add(view);
-        frame.setResizable(false);
-        frame.pack();
-        frame.setVisible(true);
-        frame.requestFocus();
-        view.addMouseListener(new GiveFocus(frame));
+        createMainFrame();
+        createNameFrame();
+        createGameOverFrame();
 
         controller = new Controller(world.getPlayer());
-        frame.addKeyListener(controller);
+        mainFrame.addKeyListener(controller);
 
         view.addMouseMotionListener(new MouseMoved(view));
 
@@ -81,27 +77,67 @@ public class Game {
      * HighScoreReader and HighScoreWriter.
      */
     public void doGameOver() throws IOException {
-        updateFrame();
+        getMainFrame().setVisible(false);
+        getGameOverFrame().setVisible(true);
 
         HighScoreWriter writer = new HighScoreWriter("data/scores.txt");
-//        writer.clear();
-        writer.writeHighScore("player1", getPlayer().getScore());
+        writer.writeHighScore(getPlayer().getName(), getPlayer().getScore());
 
         HighScoreReader reader = new HighScoreReader("data/scores.txt");
         reader.setGameOver(gameOver);
         reader.readScores();
     }
 
-    /**
-     * Updates the frame to show the "game over" screen.
-     */
-    public void updateFrame() {
-        world.getGameMusic().stop();
-        frame.remove(view);
-        frame.remove(buttons);
-        frame.add(gameOver, BorderLayout.EAST);
-        frame.setSize(412, 450);
-        frame.setVisible(true);
+    public void createNameFrame() {
+        nameFrame = new JFrame("Enter name");
+
+        nameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        nameFrame.setLocationByPlatform(true);
+        nameFrame.add(enterName);
+        nameFrame.setResizable(false);
+        nameFrame.pack();
+        nameFrame.setVisible(true);
+        nameFrame.requestFocus();
+        view.addMouseListener(new GiveFocus(nameFrame));
+    }
+
+    public void createGameOverFrame() {
+        gameOverFrame = new JFrame("Game over");
+
+        gameOverFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        gameOverFrame.setLocationByPlatform(true);
+        gameOverFrame.add(gameOver);
+        gameOverFrame.setResizable(false);
+        gameOverFrame.pack();
+        gameOverFrame.setVisible(false);
+        gameOverFrame.requestFocus();
+        view.addMouseListener(new GiveFocus(gameOverFrame));
+    }
+
+    public void createMainFrame() {
+        mainFrame = new JFrame("acwg276Game - ms3");
+        mainFrame.add(buttons, BorderLayout.WEST);
+
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainFrame.setLocationByPlatform(true);
+        mainFrame.add(view);
+        mainFrame.setResizable(false);
+        mainFrame.pack();
+        mainFrame.setVisible(false);
+        mainFrame.requestFocus();
+        view.addMouseListener(new GiveFocus(mainFrame));
+    }
+
+    public JFrame getNameFrame() {
+        return nameFrame;
+    }
+
+    public JFrame getMainFrame() {
+        return mainFrame;
+    }
+
+    public JFrame getGameOverFrame() {
+        return gameOverFrame;
     }
 
     /**
@@ -277,6 +313,7 @@ public class Game {
      *
      */
     private void updatePlayer(Player oldPlayer) {
+        world.getPlayer().setName(oldPlayer.getName());
         world.getPlayer().setFeatherCount(oldPlayer.getFeatherCount());
         world.getPlayer().setScore(oldPlayer.getScore());
         world.getPlayer().setLives(oldPlayer.getLives());

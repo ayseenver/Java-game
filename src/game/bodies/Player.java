@@ -6,6 +6,8 @@ import city.cs.engine.*;
  * @author Ayse Enver, ayse.enver@city.ac.uk
  */
 public class Player extends Walker {
+    
+    private String name;
 
     private static final Shape shape = new PolygonShape(-0.185f, 1.125f, -0.58f, 0.729f,
             -0.646f, -0.312f, -0.417f, -1.094f, 0.435f, -1.09f, 0.681f, -0.316f, 0.479f, 0.918f);
@@ -59,10 +61,6 @@ public class Player extends Walker {
 
     /**
      * Returns the player's score so far.
-     * <p>
-     * Returns the player's score so far.
-     *
-     * @return The player's score so far.
      */
     public int getScore() {
         return score;
@@ -124,6 +122,14 @@ public class Player extends Walker {
      */
     public void decrementLives() {
         lives--;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

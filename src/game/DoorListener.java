@@ -16,10 +16,14 @@ public class DoorListener implements CollisionListener {
         this.game = game;
     }
 
+    /**
+     * Handle collisions between player and door.
+     *
+     * @param e description of the key event
+     */
     @Override
     public void collide(CollisionEvent e) {
-        Player player = game.getPlayer();
-        if (e.getOtherBody() == player && game.isCurrentLevelCompleted()) {
+        if (e.getOtherBody() instanceof Player && game.isCurrentLevelCompleted()) {
 
             System.out.println("Going to next level...");
             game.goNextLevel();

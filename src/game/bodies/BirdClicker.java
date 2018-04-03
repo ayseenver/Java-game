@@ -12,8 +12,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 /**
- *
- * @author Ayse
+ * @author Ayse Enver, ayse.enver@city.ac.uk
  */
 public class BirdClicker extends MouseAdapter {
 
@@ -30,17 +29,25 @@ public class BirdClicker extends MouseAdapter {
         this.ground = ground;
     }
 
+    /**
+     * Handles when a bird is clicked on by the user.
+     * <p>
+     * When a bird is clicked, it is removed from a list of birds that are being
+     * tracked, so that the method knows how many birds remain in the level. The
+     * bird is also destroyed through its own birdClicked method.
+     *
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         for (Bird bird : birds) {
             if (bird.contains(view.viewToWorld(e.getPoint()))) {
 
                 bird.birdClicked(player, ground);
-                
-                if(bird.lives == 0){
+
+                if (bird.lives == 0) {
                     birds.remove(bird);
                 }
-                
+
                 break;
             }
         }

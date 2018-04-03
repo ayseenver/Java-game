@@ -8,6 +8,9 @@ import java.awt.Image;
 import java.io.IOException;
 import javax.swing.ImageIcon;
 
+/**
+ * @author Ayse Enver, ayse.enver@city.ac.uk
+ */
 public class MyView extends UserView {
 
     private static final Image heart = new ImageIcon("data/heart.png").getImage();
@@ -26,6 +29,9 @@ public class MyView extends UserView {
         this.world = world;
     }
 
+    /**
+     * Paints the foreground of the view.
+     */
     @Override
     protected void paintForeground(Graphics2D g) {
         world = (GameLevel) this.getWorld();
@@ -34,10 +40,9 @@ public class MyView extends UserView {
         lives = world.getPlayer().getLives();
 
         if (lives == 0) {
-            g.drawString("Game over!", 220, 200);
             try {
-                world.getGame().gameOver();
-            } catch(IOException e){
+                world.getGame().doGameOver();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
             world.stop();
@@ -61,6 +66,9 @@ public class MyView extends UserView {
         }
     }
 
+    /**
+     * Paints the background of the view.
+     */
     @Override
     protected void paintBackground(Graphics2D g) {
         switch (this.getWorld().getClass().getName()) {

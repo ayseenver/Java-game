@@ -12,14 +12,12 @@ import city.cs.engine.PolygonShape;
 import city.cs.engine.Shape;
 import city.cs.engine.SolidFixture;
 import city.cs.engine.World;
-import game.Feather;
 import org.jbox2d.common.Vec2;
 
 /**
- *
- * @author Ayse
+ * @author Ayse Enver, ayse.enver@city.ac.uk
  */
-public class BossBird extends Bird{
+public class BossBird extends Bird {
 
     Random rand = new Random();
 
@@ -41,10 +39,22 @@ public class BossBird extends Bird{
         addImage(image);
     }
 
+    /**
+     * Destroys the bird and places a feather in its place.
+     * <p>
+     * When the bird is clicked, the lives of the bird are decremented. If there
+     * are no lives remaining, the bird is destroyed and a feather created in
+     * its place. Since this type of bird has 1 life, it will be destroyed on
+     * first click.
+     *
+     * @param player The current player in the level. This is so the collision listener
+     * Pickup can be added to the feather.
+     * @param ground The ground/floor of the current level. This is so the collision listener
+     * HittingFloor can be added to the feather.
+     */
     @Override
     public void birdClicked(Player player, Body ground) {
         decrementLives();
-        System.out.println("Lives remaining: " + getLives());
         if (lives == 0) {
             Feather feather = new Feather(this.getWorld(), player, ground, 10);
             feather.setPosition(this.getPosition());
@@ -56,6 +66,12 @@ public class BossBird extends Bird{
         }
     }
 
+    /**
+     * Applies upwards force to the bird.
+     * <p>
+     * This is controlled by a timer so the force is applied at regular
+     * intervals.
+     */
     @Override
     public void fly() {
         if (this.getWorld().isRunning()) {
@@ -65,6 +81,13 @@ public class BossBird extends Bird{
         }
     }
 
+    /**
+     * Returns the amount of lives the bird has remaining
+     * <p>
+     * When the bird is clicked, the lives of the bird are decremented. This
+     * method returns the number of lives remaining.
+     * @return lives The number of lives remaining.
+     */
     @Override
     public int getLives() {
         return lives;

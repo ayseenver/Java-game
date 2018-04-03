@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game;
+package game.bodies;
 
 import city.cs.engine.Body;
 import city.cs.engine.DynamicBody;
@@ -11,14 +11,15 @@ import city.cs.engine.PolygonShape;
 import city.cs.engine.SolidFixture;
 import city.cs.engine.SoundClip;
 import city.cs.engine.World;
+import game.HittingFloor;
+import game.Pickup;
 import game.bodies.Player;
 import java.io.IOException;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
- *
- * @author Ayse
+ * @author Ayse Enver, ayse.enver@city.ac.uk
  */
 public class Feather extends DynamicBody {
 
@@ -34,6 +35,14 @@ public class Feather extends DynamicBody {
         this.addCollisionListener(new HittingFloor(ground, player));
     }
 
+    /**
+     * Plays a sound when the feather is picked up.
+     * <p>
+     * Triggers a short sound to be played once whenever a feather is picked up
+     * by the player.
+     *
+     * Also handles exceptions if the track is not found etc.
+     */
     public void playSound() {
 
         try {

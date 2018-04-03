@@ -1,5 +1,6 @@
 package game;
 
+import game.bodies.Feather;
 import city.cs.engine.*;
 import game.bodies.Player;
 
@@ -16,12 +17,19 @@ public class Pickup implements CollisionListener {
         this.score = score;
     }
 
+    /**
+     * Handle collisions between player and feather.
+     * <p>
+     * Increments the player's feather count and score, and destroys the feather.
+     * 
+     * @param e description of the key event
+     */
     @Override
     public void collide(CollisionEvent e) {
         if (e.getReportingBody() instanceof Feather && e.getOtherBody() == player) {
 
             Feather feather = (Feather) e.getReportingBody();
-            
+
             player.incrementFeatherCount();
             player.incrementScore(score);
             feather.playSound();

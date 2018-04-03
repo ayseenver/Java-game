@@ -28,13 +28,16 @@ public class HighScoreReader {
         this.fileName = fileName;
     }
 
+    /**
+     * Allows this class to access the "game over" page.
+     */
     public void setGameOver(GameOver gameOver) {
         this.gameOver = gameOver;
     }
 
     /**
      * Read the high-score data from the high-score file and print it to the
-     * terminal window.
+     * text box on the "game over" screen.
      */
     public void readScores() throws IOException {
         FileReader fr = null;
@@ -58,13 +61,19 @@ public class HighScoreReader {
 
             pos = biggestPosition();
 
+            //print the most recent score
+            gameOver.getTextArea().append("Your score" + "\n");
+            gameOver.getTextArea().append("Name: " + names.get(names.size() - 1)
+                    + ", Score: " + scores.get(scores.size() - 1) + "\n");
+            gameOver.getTextArea().append("\n");
+
             //print the highscore
             gameOver.getTextArea().append("High score" + "\n");
             gameOver.getTextArea().append("Name: " + names.get(pos)
                     + ", Score: " + scores.get(pos) + "\n");
+            gameOver.getTextArea().append("\n");
 
             //print the top 10 scores
-            gameOver.getTextArea().append("\n");
             gameOver.getTextArea().append("Top 10" + "\n");
             topTen();
 
@@ -79,7 +88,12 @@ public class HighScoreReader {
         }
     }
 
-    //finds the position of the biggest score in the list.
+    /**
+     * Finds the index of the biggest score in the text file (the high score).
+     *
+     * @return pos - the index of the biggest score in the text file (the high
+     * score).
+     */
     public int biggestPosition() {
         int pos = 0;
         int biggest = scores.get(pos);
@@ -95,12 +109,18 @@ public class HighScoreReader {
         return pos;
     }
 
+    /**
+     * Prints out the top ten high scores in the text file.
+     * <p>
+     * Sorts the list of high scores into descending order, and then prints out
+     * the top ten high scores.
+     */
     public void topTen() {
         Collections.sort(scores);
         Collections.reverse(scores);
         for (int i = 0; i < 10; i++) {
-            gameOver.getTextArea().append(i+1 + ") Name: " + names.get(i) + 
-                    ", Score: " + scores.get(i) + "\n");
+            gameOver.getTextArea().append(i + 1 + ") Name: " + names.get(i)
+                    + ", Score: " + scores.get(i) + "\n");
         }
     }
 

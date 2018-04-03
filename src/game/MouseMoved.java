@@ -11,8 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
 /**
- *
- * @author Ayse
+ * @author Ayse Enver, ayse.enver@city.ac.uk
  */
 public class MouseMoved implements MouseMotionListener {
 
@@ -28,6 +27,10 @@ public class MouseMoved implements MouseMotionListener {
     public void mouseDragged(MouseEvent e) {
     }
 
+    /**
+     * Move the crosshair to the current mouse position.
+     * @param e description of the key event
+     */
     @Override
     public void mouseMoved(MouseEvent e) {
         crosshair.setPosition(view.viewToWorld(e.getPoint()));

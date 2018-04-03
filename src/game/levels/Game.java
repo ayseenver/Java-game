@@ -15,6 +15,9 @@ import java.awt.BorderLayout;
 import java.io.IOException;
 import javax.swing.JFrame;
 
+/**
+ * @author Ayse Enver, ayse.enver@city.ac.uk
+ */
 public class Game {
 
     private GameLevel world;
@@ -25,7 +28,7 @@ public class Game {
     private Player oldPlayer;
     private final ControlPanel buttons;
     private final GameOver gameOver;
-    private final JFrame frame;
+    private JFrame frame;
 
     public Game() {
 
@@ -42,7 +45,6 @@ public class Game {
         buttons = new ControlPanel(world);
         gameOver = new GameOver(world);
         frame.add(buttons, BorderLayout.WEST);
-        frame.add(gameOver, BorderLayout.EAST);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationByPlatform(true);
@@ -69,7 +71,18 @@ public class Game {
         world.start();
     }
 
-    public void gameOver() throws IOException {
+    /**
+     * Triggers the "game over" state of the game.
+     * <p>
+     * When the player runs out of lives or reaches the end of the game, this
+     * method will trigger to bring up the "game over" screen. The "game over"
+     * screen contains a list of the top 5 players and their scores, as well as
+     * the player with the highest score. This is handed here with
+     * HighScoreReader and HighScoreWriter.
+     */
+    public void doGameOver() throws IOException {
+        updateFrame();
+
         HighScoreWriter writer = new HighScoreWriter("data/scores.txt");
 //        writer.clear();
         writer.writeHighScore("player1", getPlayer().getScore());
@@ -79,14 +92,52 @@ public class Game {
         reader.readScores();
     }
 
+    /**
+     * Updates the frame to show the "game over" screen.
+     */
+    public void updateFrame() {
+        world.getGameMusic().stop();
+        frame.remove(view);
+        frame.remove(buttons);
+        frame.add(gameOver, BorderLayout.EAST);
+        frame.setSize(412, 450);
+        frame.setVisible(true);
+    }
+
+    /**
+     * Returns the player that exists in the current world (level of the game).
+     * <p>
+     * Used primarily when a level progresses to update the player with the
+     * stats of the player in the level before.
+     *
+     * @return The player that exists in the current world (game level).
+     */
     public Player getPlayer() {
         return world.getPlayer();
     }
 
+    /**
+     * Checks if level completion circumstances have been met.
+     * <p>
+     * This is usually when all of the birds in a level have been destroyed.
+     * This is checked within the level class itself, using the isCompleted()
+     * method.
+     *
+     * @return True of false if level completion circumstances have been met.
+     */
     public boolean isCurrentLevelCompleted() {
         return world.isCompleted();
     }
 
+    /**
+     * Moves the game on to the next level.
+     * <p>
+     * Takes the old player stats, then creates a new player and adds these
+     * stats to it. Also updates the view so that it is now focusing on the new
+     * level. Moves the level on by 1. If the player is on the last level, the
+     * gameOver() method is called.
+     *
+     */
     public void goNextLevel() {
         world.getGameMusic().stop();
         oldPlayer = world.getPlayer();
@@ -150,13 +201,21 @@ public class Game {
                 break;
             default:
                 try {
-                    gameOver();
+                    doGameOver();
                 } catch (IOException e) {
                     System.exit(0);
                 }
         }
     }
 
+    /**
+     * Moves the game back a level.
+     * <p>
+     * Takes the old player stats, then creates a new player and adds these
+     * stats to it. Also updates the view so that it is now focusing on the new
+     * level. Moves the level back by 1. If the player is on the first level,
+     * the game is exited.
+     */
     public void goPreviousLevel() {
         oldPlayer = world.getPlayer();
         world.stop();
@@ -209,12 +268,27 @@ public class Game {
         }
     }
 
+    /**
+     * Updates the new player with the stats of the old player.
+     * <p>
+     * A new player is created every time a new level is loaded. The stats of
+     * the old player are saved and here they are added to the new player, so
+     * that scores etc can carry across levels.
+     *
+     */
     private void updatePlayer(Player oldPlayer) {
         world.getPlayer().setFeatherCount(oldPlayer.getFeatherCount());
         world.getPlayer().setScore(oldPlayer.getScore());
         world.getPlayer().setLives(oldPlayer.getLives());
     }
 
+    /**
+     * Updates the view to focus on the new level.
+     * <p>
+     * Updates the view so that it is displaying the new level. Also adds all
+     * the listeners back into the scene.
+     *
+     */
     private void updateView() {
         //Set the view to the new world.
         view.setWorld(world);
@@ -223,6 +297,14 @@ public class Game {
         view.addMouseMotionListener(new MouseMoved(view));
     }
 
+    /**
+     * Sets the level the game should load/be on.
+     * <p>
+     * Used primarily in conjunction with GoNextLevel() when a level is selected
+     * via the drop down box.
+     *
+     * @param level The level that the game should now be on.
+     */
     public void setLevel(int level) {
         this.level = level;
     }

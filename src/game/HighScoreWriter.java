@@ -14,6 +14,9 @@ public class HighScoreWriter {
         this.fileName = fileName;
     }
 
+    /**
+     * Write the high-score data to the high-score file.
+     */
     public void writeHighScore(String name, int score) throws IOException {
         boolean append = true;
         FileWriter writer = null;
@@ -27,6 +30,9 @@ public class HighScoreWriter {
         }
     }
 
+    /**
+     * Clear the high-score file.
+     */
     public void clear() throws IOException {
         boolean append = false;
         FileWriter writer = null;

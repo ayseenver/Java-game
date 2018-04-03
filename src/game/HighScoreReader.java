@@ -68,7 +68,7 @@ public class HighScoreReader {
             if (fr != null) {
                 fr.close();
             }
-            addScoresToFile();
+            printAllScores();
         }
     }
 
@@ -108,7 +108,7 @@ public class HighScoreReader {
         }
     }
 
-    public void addScoresToFile() {
+    public void printAllScores() {
         pos = biggestPosition();
         
         //print the most recent score

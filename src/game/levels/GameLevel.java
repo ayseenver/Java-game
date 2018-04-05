@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import org.jbox2d.common.Vec2;
 
 /**
- * @author Ayse Enver, ayse.enver@city.ac.uk
+ * The abstract class that all levels will inherit from.
  */
 public abstract class GameLevel extends World {
 

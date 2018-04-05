@@ -3,7 +3,7 @@ package game.bodies;
 import city.cs.engine.*;
 
 /**
- * @author Ayse Enver, ayse.enver@city.ac.uk
+ * The player character in the game.
  */
 public class Player extends Walker {
     

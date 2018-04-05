@@ -15,7 +15,7 @@ import city.cs.engine.World;
 import org.jbox2d.common.Vec2;
 
 /**
- * @author Ayse Enver, ayse.enver@city.ac.uk
+ * A type of bird with three lives that appears on level 4.
  */
 public class BossBird extends Bird {
 

@@ -12,7 +12,7 @@ import city.cs.engine.StaticBody;
 import city.cs.engine.World;
 
 /**
- * @author Ayse Enver, ayse.enver@city.ac.uk
+ * An image that follows the mouse cursor.
  */
 public class Crosshair extends StaticBody{
     

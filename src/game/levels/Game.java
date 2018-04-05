@@ -17,7 +17,8 @@ import java.io.IOException;
 import javax.swing.JFrame;
 
 /**
- * @author Ayse Enver, ayse.enver@city.ac.uk
+ * The main class that sets up and runs the game, and handles when the game
+ * needs to go forward or back a level.
  */
 public class Game {
 

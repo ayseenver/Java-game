@@ -14,7 +14,7 @@ import city.cs.engine.World;
 import city.cs.engine.WorldView;
 
 /**
- * @author Ayse Enver, ayse.enver@city.ac.uk
+ * A type of bird with one life.
  */
 public class RightBird extends Bird {
 

@@ -1,12 +1,12 @@
 package game;
 
-import game.levels.Game;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import javax.swing.JPanel;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Demonstrates how high-score data can be read from a text file and printed to
@@ -97,7 +97,7 @@ public class HighScoreReader {
      * Prints out the top ten high scores in the text file.
      * <p>
      * Sorts the list of high scores into descending order, and then prints out
-     * the top ten high scores.
+     * the first ten high scores.
      */
     public void topTen() {
         Collections.sort(scores);
@@ -110,7 +110,7 @@ public class HighScoreReader {
 
     public void printAllScores() {
         pos = biggestPosition();
-        
+
         //print the most recent score
         gameOver.getTextArea().append("Your score" + "\n");
         gameOver.getTextArea().append("Name: " + names.get(names.size() - 1)
@@ -124,8 +124,8 @@ public class HighScoreReader {
         gameOver.getTextArea().append("\n");
 
         //print the top 10 scores
-//        gameOver.getTextArea().append("Top 10" + "\n");
-//        topTen();
+        gameOver.getTextArea().append("Top 10" + "\n");
+        topTen();
     }
 
     public static void main(String[] args) throws IOException {

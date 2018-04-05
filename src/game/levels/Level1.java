@@ -15,7 +15,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import org.jbox2d.common.Vec2;
 
 /**
- * @author Ayse Enver, ayse.enver@city.ac.uk
+ * Sets up the first level.
  */
 public class Level1 extends GameLevel {
 

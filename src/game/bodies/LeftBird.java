@@ -13,7 +13,7 @@ import city.cs.engine.SolidFixture;
 import city.cs.engine.World;
 
 /**
- * @author Ayse Enver, ayse.enver@city.ac.uk
+ * A type of bird with one life.
  */
 public class LeftBird extends Bird {
 

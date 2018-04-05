@@ -13,7 +13,7 @@ import java.util.TimerTask;
 import org.jbox2d.common.Vec2;
 
 /**
- * @author Ayse Enver, ayse.enver@city.ac.uk
+ * The abstract class for all birds.
  */
 public abstract class Bird extends Walker {
 

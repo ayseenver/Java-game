@@ -19,7 +19,8 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
- * @author Ayse Enver, ayse.enver@city.ac.uk
+ * A feather object that adds to the players score when collected, and takes
+ * away a player's life when dropped.
  */
 public class Feather extends DynamicBody {
 

@@ -12,7 +12,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 /**
- * @author Ayse Enver, ayse.enver@city.ac.uk
+ * Handles events whenever a bird is clicked on by the player.
  */
 public class BirdClicker extends MouseAdapter {
 

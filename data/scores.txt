@@ -8,3 +8,4 @@ Radu,0
 Sam,1
 Leon,6
 Frank,10
+Name:,0

@@ -11,7 +11,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
 /**
- * @author Ayse Enver, ayse.enver@city.ac.uk
+ * Handles anything to do with mouse movement. In this case, making a crosshair
+ * image follow the mouse cursor.
  */
 public class MouseMoved implements MouseMotionListener {
 

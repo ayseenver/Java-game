@@ -18,6 +18,9 @@ public abstract class GameLevel extends World {
     private Game game;
     private SoundClip gameMusic;
 
+    /**
+     * Returns the player that exists in the current level of the game.
+     */
     public Player getPlayer() {
         return player;
     }
@@ -28,7 +31,7 @@ public abstract class GameLevel extends World {
      * Adds the player to the level, along with the exit door. The enemies and
      * walls are added in each level by that level's class (Level1.java etc).
      *
-     * @param game The game that the level should exist in.
+     * @param game - The game that the level should exist in.
      */
     public void populate(Game game) {
         this.game = game;
@@ -55,8 +58,7 @@ public abstract class GameLevel extends World {
     /**
      * Checks if the level has been completed.
      * <p>
-     * This returns true when all birds in the level have been
-     * destroyed.
+     * This returns true when all birds in the level have been destroyed.
      *
      */
     public abstract boolean isCompleted();
@@ -106,7 +108,7 @@ public abstract class GameLevel extends World {
 
     /**
      * Returns the game that this level exists in.
-     * 
+     *
      */
     public Game getGame() {
         return game;

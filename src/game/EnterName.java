@@ -79,7 +79,6 @@ public class EnterName extends javax.swing.JPanel {
         game.getPlayer().setName(jTextField1.getText());
         game.getNameFrame().setVisible(false);
         game.getMainFrame().setVisible(true);
-        System.out.println(game.getPlayer().getName());
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

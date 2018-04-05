@@ -5,20 +5,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
- * Demonstrates how high-score data can be read from a text file and printed to
- * the terminal.
+ * Reads high scores from a text file.
  */
 public class HighScoreReader {
 
     private int pos;
     private String fileName;
     private GameOver gameOver;
-    ArrayList<Integer> scores = new ArrayList<Integer>();
-    ArrayList<String> names = new ArrayList<String>();
+    ArrayList<Integer> scores = new ArrayList<>();
+    ArrayList<String> names = new ArrayList<>();
+    ArrayList<User> users = new ArrayList<>();
 
     /**
      * Initialise a new HighScoreReader
@@ -56,6 +54,9 @@ public class HighScoreReader {
 
                 int score = Integer.parseInt(tokens[1]);
                 scores.add(score);
+                
+                User user = new User(name, score);
+                users.add(user);
 
                 line = reader.readLine();
             }
@@ -100,11 +101,9 @@ public class HighScoreReader {
      * the first ten high scores.
      */
     public void topTen() {
-        Collections.sort(scores);
-        Collections.reverse(scores);
-        for (int i = 0; i < 10; i++) {
-            gameOver.getTextArea().append(i + 1 + ") Name: " + names.get(i)
-                    + ", Score: " + scores.get(i) + "\n");
+        Collections.sort(users);
+        for (int i = 0; i < users.size(); i++) {
+            gameOver.getTextArea().append((users.get(i).toString()) + "\n");
         }
     }
 

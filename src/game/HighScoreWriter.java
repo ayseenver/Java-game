@@ -4,7 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * Demonstrates how high-score data can be written to a text file.
+ * Writes high scores to a text file.
  */
 public class HighScoreWriter {
 
@@ -21,6 +21,7 @@ public class HighScoreWriter {
         boolean append = true;
         FileWriter writer = null;
         try {
+            User user = new User(name, score);
             writer = new FileWriter(fileName, append);
             writer.write(name + "," + score + "\n");
         } finally {

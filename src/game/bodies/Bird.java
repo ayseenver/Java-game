@@ -19,6 +19,10 @@ public abstract class Bird extends Walker {
 
     int lives = 1;
 
+    /**
+     * A timertask that allows the fly() method to be called repeatedly at 
+     * certain intervals of time, thus allowing the bird to "fly".
+     */
     Timer timer = new Timer();
     TimerTask task = new TimerTask() {
         @Override
@@ -43,7 +47,8 @@ public abstract class Bird extends Walker {
     /**
      * Applies upwards force to the bird.
      * <p>
-     * This is controlled by a timer so the force is applied at regular intervals.
+     * This is controlled by a timer so the force is applied at regular intervals
+     * and depends on the position of the bird to stop the bird flying off the screen.
      */
     public void fly() {
         if (this.getWorld().isRunning()) {

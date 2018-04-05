@@ -9,7 +9,8 @@ import java.io.IOException;
 import javax.swing.ImageIcon;
 
 /**
- * @author Ayse Enver, ayse.enver@city.ac.uk
+ * Creates a view for the world so the world can be displayed. Also deals with
+ * any text/icons on the screen.
  */
 public class MyView extends UserView {
 

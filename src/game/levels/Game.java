@@ -89,6 +89,9 @@ public class Game {
         reader.readScores();
     }
 
+    /**
+     * Creates a JFrame to hold the "Enter name" screen of the game.
+     */
     public void createNameFrame() {
         nameFrame = new JFrame("Enter name");
 
@@ -102,6 +105,9 @@ public class Game {
         view.addMouseListener(new GiveFocus(nameFrame));
     }
 
+    /**
+     * Creates a JFrame to hold the "Game over" screen of the game.
+     */
     public void createGameOverFrame() {
         gameOverFrame = new JFrame("Game over");
 
@@ -115,6 +121,10 @@ public class Game {
         view.addMouseListener(new GiveFocus(gameOverFrame));
     }
 
+    /**
+     * Creates a JFrame to hold the main view of the game while the game is
+     * being played.
+     */
     public void createMainFrame() {
         mainFrame = new JFrame("acwg276Game - ms3");
         mainFrame.add(buttons, BorderLayout.WEST);
@@ -129,14 +139,23 @@ public class Game {
         view.addMouseListener(new GiveFocus(mainFrame));
     }
 
+    /**
+     * @return The name frame of the game.
+     */
     public JFrame getNameFrame() {
         return nameFrame;
     }
 
+    /**
+     * @return The main frame of the game.
+     */
     public JFrame getMainFrame() {
         return mainFrame;
     }
 
+    /**
+     * @return The game over frame of the game.
+     */
     public JFrame getGameOverFrame() {
         return gameOverFrame;
     }

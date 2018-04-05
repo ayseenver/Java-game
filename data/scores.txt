@@ -1,7 +1,10 @@
-A,1
-B,2
-C,0
-D,6
-E,0
-AyseE,0
-Jacob,4
+Ayse,14
+Example,0
+Bob,8
+YourName,19
+James,1
+Charles,2
+Radu,0
+Sam,1
+Leon,6
+Frank,10

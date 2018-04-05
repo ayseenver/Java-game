@@ -84,6 +84,8 @@ public abstract class Bird extends Walker {
      * <p>
      * When the bird is clicked, the lives of the bird are decremented. This
      * method returns the number of lives remaining.
+     * 
+     * @return The number of lives the player has remaining.
      */
     public abstract int getLives();
 }

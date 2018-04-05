@@ -48,6 +48,7 @@ public class Game {
         gameOver = new GameOver(world);
         enterName = new EnterName(this);
 
+        //create all three frames. Only name frame is visible at this stage.
         createMainFrame();
         createNameFrame();
         createGameOverFrame();
@@ -78,13 +79,19 @@ public class Game {
      * HighScoreReader and HighScoreWriter.
      */
     public void doGameOver() throws IOException {
+        world.getGameMusic().stop();
         getMainFrame().setVisible(false);
+        //make the gameOver frame show
         getGameOverFrame().setVisible(true);
 
+        //write current stats to text file.
         HighScoreWriter writer = new HighScoreWriter("data/scores.txt");
         writer.writeHighScore(getPlayer().getName(), getPlayer().getScore());
 
+        //read the high score data
         HighScoreReader reader = new HighScoreReader("data/scores.txt");
+        //Pass in the gameOver element so that the text reader can edit the 
+        //text box shown on the screen.
         reader.setGameOver(gameOver);
         reader.readScores();
     }
@@ -196,7 +203,9 @@ public class Game {
      */
     public void goNextLevel() {
         world.getGameMusic().stop();
+        //save current player stats so the new player can be updated with them.
         oldPlayer = world.getPlayer();
+        //stop the simulation
         world.stop();
         switch (level) {
             case 0:
@@ -273,6 +282,7 @@ public class Game {
      * the game is exited.
      */
     public void goPreviousLevel() {
+        world.getGameMusic().stop();
         oldPlayer = world.getPlayer();
         world.stop();
         switch (level) {

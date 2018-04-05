@@ -60,7 +60,7 @@ public class Player extends Walker {
     }
 
     /**
-     * Returns the player's score so far.
+     * @return The player's score so far.
      */
     public int getScore() {
         return score;

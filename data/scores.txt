@@ -9,3 +9,7 @@ Sam,1
 Leon,6
 Frank,10
 Name:,0
+Name:,0
+Name:,1
+Name:,0
+Name:,0

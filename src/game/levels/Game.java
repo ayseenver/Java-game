@@ -77,6 +77,7 @@ public class Game {
      * screen contains a list of the top 5 players and their scores, as well as
      * the player with the highest score. This is handed here with
      * HighScoreReader and HighScoreWriter.
+     * @throws java.io.IOException
      */
     public void doGameOver() throws IOException {
         world.getGameMusic().stop();

@@ -102,7 +102,7 @@ public class HighScoreReader {
      */
     public void topTen() {
         Collections.sort(users);
-        for (int i = 0; i < users.size(); i++) {
+        for (int i = 0; i < 10; i++) {
             gameOver.getTextArea().append(i + 1 + ") " + (users.get(i).toString()) + "\n");
         }
     }

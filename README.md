@@ -12,4 +12,4 @@ Download the project and run it in netbeans. To play, use A and D to move left a
 
 ## Video Demo
 
-*https://www.youtube.com/watch?v=0FDTA9rlJqI
+* https://www.youtube.com/watch?v=0FDTA9rlJqI
